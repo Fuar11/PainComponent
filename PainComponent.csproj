@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+
+		<LangVersion>Latest</LangVersion>
+
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<Nullable>enable</Nullable>
+
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+
+		<DebugType>embedded</DebugType>
+
+		<TheLongDarkPath>C:\Program Files (x86)\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
+		<ModsPath>$(TheLongDarkPath)\Mods</ModsPath>
+		
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Waltz.Modding.TLD.Il2CppAssemblies.Windows" Version="2.52.0" />
+
+		<Reference Include="ModSettings.dll">
+			<HintPath>$(ModsPath)\ModSettings.dll</HintPath>
+		</Reference>
+		<Reference Include="Moment.dll">
+			<HintPath>$(ModsPath)\Moment.dll</HintPath>
+		</Reference>
+		<Reference Include="AfflictionComponent.dll">
+			<HintPath>$(ModsPath)\AfflictionComponent.dll</HintPath>
+		</Reference>
+		<Reference Include="ModData.dll">
+			<HintPath>$(ModsPath)\ModData.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="ComplexLogger">
+			<HintPath>$(ModsPath)\ComplexLogger.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+
+	<!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<!-- This copies the mods files to the games mod dir -->
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TheLongDarkPath)/Mods" />
+	</Target>
+	
+</Project>
