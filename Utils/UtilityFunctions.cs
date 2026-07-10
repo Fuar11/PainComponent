@@ -68,10 +68,13 @@ namespace PainComponent.Utils
 
             if (handsPainDifference > 0 || armsPainDifference > 0)
             {
-               return pm.PainkillersInEffect(handsPainLevel) ? UtilityFunctions.MapPercentageToVariable(handsPainDifference / 2) : UtilityFunctions.MapPercentageToVariable(handsPainDifference);
+
+                float handsPainMulti = pm.PainkillersInEffect(handsPainLevel) ? UtilityFunctions.MapPercentageToVariable(handsPainDifference / 2) : UtilityFunctions.MapPercentageToVariable(handsPainDifference);
+                float armsPainMulti = pm.PainkillersInEffect(armsPainLevel) ? UtilityFunctions.MapPercentageToVariable(armsPainDifference / 2) : UtilityFunctions.MapPercentageToVariable(armsPainDifference);
+
+                return handsPainMulti + armsPainMulti;
             }
             else return 1;
         }
-
     }
 }
