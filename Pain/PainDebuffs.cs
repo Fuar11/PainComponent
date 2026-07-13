@@ -502,6 +502,8 @@ namespace PainComponent.Pain
             public static void Postfix(ref bool __result)
             {
 
+                if (GameManager.m_ActiveScene == null || GameManager.m_ActiveScene.ToLowerInvariant().Contains("menu")) return;
+
                 PainManager pm = Mod.painManager;
 
                 if (pm == null) return;
