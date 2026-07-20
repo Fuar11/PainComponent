@@ -39,6 +39,13 @@ namespace PainComponent.Utils
         {
             if (hoursSpentCrafting <= 0f) return;
 
+            if (InterfaceManager.GetPanel<Panel_Cooking>().isActiveAndEnabled)
+            {
+                Mod.Logger.Log("Cooking panel is enabled, do not apply debuff.", ComplexLogger.FlaggedLoggingLevel.Debug);
+                return;
+            }
+
+
             float multiplier = GetCraftingDurationMultiplier();
             if (multiplier <= 0f || Mathf.Approximately(multiplier, 1f)) return;
 

@@ -539,6 +539,8 @@ namespace PainComponent.Pain
                     float handsStartingPainLevel = pm.GetTotalPainLevelForPainAtLocations(hands, true);
                     float handsPainDifference = (handsPainLevel / handsStartingPainLevel) * 100;
 
+                    bool handsPainkillers = pm.PainkillersInEffect(handsPainLevel);
+
                     AfflictionBodyArea[] arms = { AfflictionBodyArea.ArmLeft, AfflictionBodyArea.ArmRight };
 
                     //just arms
@@ -546,10 +548,12 @@ namespace PainComponent.Pain
                     float armsStartingPainLevel = pm.GetTotalPainLevelForPainAtLocations(arms, true);
                     float armsPainDifference = (armsPainLevel / armsStartingPainLevel) * 100;
 
+                    bool armsPainkillers = pm.PainkillersInEffect(armsPainLevel);
+                    
 
                     if (pm.GetTotalPainLevel() > 0)
                     {
-                        if (handsPainDifference > 30 || armsPainDifference > 30) //hands or arms are hurting too much to wield a two handed weapon
+                        if ((handsPainDifference > 30 && !handsPainkillers) || (armsPainDifference > 30 && !armsPainkillers)) //hands or arms are hurting too much to wield a two handed weapon
                         {
                             __result = SprainedWrist.CanEquipItemResult.CannotEquip2HandedWeapon;
                         }
