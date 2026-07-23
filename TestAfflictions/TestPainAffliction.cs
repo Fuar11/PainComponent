@@ -1,4 +1,5 @@
-﻿using Il2Cpp;
+﻿using AfflictionComponent.Interfaces;
+using Il2Cpp;
 using PainComponent.CustomAfflictions;
 using System;
 using System.Collections.Generic;

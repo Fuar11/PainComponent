@@ -59,7 +59,7 @@ namespace PainComponent.CustomAfflictions
         public string PanelText { get; set; }
         public SerializableColor PanelTextColour { get; set; }
 
-        public override void OnUpdate()
+        public override void OnUpdate() //if you inherit this class you will NEED to call base.OnUpdate in order for this logic to run
         {
             float tODHours = GameManager.GetTimeOfDayComponent().GetTODHours(Time.deltaTime);
             m_PainLevel -= GetPainLevelDecreasePerHour() * tODHours;
@@ -72,7 +72,6 @@ namespace PainComponent.CustomAfflictions
             PanelTextColour = new SerializableColor(Color.Lerp(Color.red, Color.green, progress));
 
         }
-
         public void CureSymptoms()
         {
         }
